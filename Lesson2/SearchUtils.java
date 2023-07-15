@@ -1,4 +1,3 @@
-
 public class SearchUtils {
 
     public static int binarySearch(int value, int[] array){
