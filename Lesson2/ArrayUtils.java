@@ -1,4 +1,3 @@
-package ru.geekbrains.lesson2;
 
 import java.util.Random;
 
