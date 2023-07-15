@@ -26,5 +26,10 @@ namespace ArraySortTests
             SortUtils.quickSort((int[])array.Clone());
         }
 
+        [Benchmark]
+        public void HeapSortTest()
+        {
+            SortUtils.heapSort((int[])array.Clone());
+        }
     }
 }
