@@ -6,7 +6,7 @@ public class Program {
         array[0] = 1;
         array[1] = "Hello!";
         array[2] = new Person();
-        Object o = new Person();
+        // Object o = new Person();
 
         Employee employee2 = new Employee("DDDD", 32);
 
