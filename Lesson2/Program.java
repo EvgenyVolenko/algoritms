@@ -1,7 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import Lesson2.SortUtils;
-import Lesson2.ArrayUtils;
 
 public class Program {
 
