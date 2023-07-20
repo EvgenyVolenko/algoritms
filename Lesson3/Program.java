@@ -41,6 +41,7 @@ public class Program {
             System.out.println("Элемент не найден.");
         }
 
+        System.out.printf("Количество элементов в списке - %d\n", linkedList1.count());
 
         linkedList1.removeFirst();
 

@@ -127,7 +127,20 @@ public class LinkedList<T> {
         head = null;
     }
 
-
+    /**
+     * Подсчет количества элементов списка
+     */
+    public int count() {
+        int size = 1;
+        Node node = head;
+        if (head == null)
+            return 0;
+        while (node.next != null) {
+            size++;
+            node = node.next;
+        }
+        return size;
+    }
 
 
     @Override
