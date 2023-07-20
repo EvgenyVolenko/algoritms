@@ -145,20 +145,24 @@ public class LinkedList<T> {
     }
 
     /**
-     * Разворот связанного списка
+     * Разворот связного списка
      */
     public void revers() {
-        Node node = head;
-        Node tempNode = node;
+        
+        Node preNode = null;
+        Node carNode = head;
+        Node nextNode = carNode.next;
         if (head == null)
             return;
 
-        while (tempNode.next != null) {
-            tempNode = node.next;
-            node.next = node;
-            node = tempNode; 
+        while (nextNode != null) {
+            carNode.next = preNode;
+            preNode = carNode;
+            carNode = nextNode;
+            nextNode = carNode.next;          
         }
-        head = node;
+        carNode.next = preNode;
+        head = carNode;
     }
 
     @Override
