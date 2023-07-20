@@ -8,7 +8,7 @@ public class Program {
         array[2] = new Person();
         // Object o = new Person();
 
-        Employee employee2 = new Employee("DDDD", 32);
+        // Employee employee2 = new Employee("DDDD", 32);
 
         Employee employee1 = new Employee("AAAAAA", 34);
         LinkedList<Employee> linkedList1 = new LinkedList<>();
@@ -27,31 +27,31 @@ public class Program {
         System.out.println();
         System.out.println(linkedList1);
 
-        linkedList1.sort(new EmployeeComparator(SortType.Descending));
+        // linkedList1.sort(new EmployeeComparator(SortType.Descending));
 
-        System.out.println();
-        System.out.println(linkedList1);
+        // System.out.println();
+        // System.out.println(linkedList1);
 
-        LinkedList<Employee>.Node node = linkedList1.contains(employee2);
-        if (node != null){
-            System.out.println("Элемент найден!");
-            System.out.println("Значение элемента: " + node.value);
-        }
-        else {
-            System.out.println("Элемент не найден.");
-        }
+        // LinkedList<Employee>.Node node = linkedList1.contains(employee2);
+        // if (node != null){
+        //     System.out.println("Элемент найден!");
+        //     System.out.println("Значение элемента: " + node.value);
+        // }
+        // else {
+        //     System.out.println("Элемент не найден.");
+        // }
 
         System.out.printf("Количество элементов в списке - %d\n", linkedList1.count());
 
-        linkedList1.removeFirst();
+        LinkedList<Employee> linkedList2 = new LinkedList<>();
 
-        linkedList1.removeLast();
+        
 
-        System.out.println();
-        System.out.println(linkedList1);
-
+        // linkedList1.removeFirst();
+        // linkedList1.removeLast();
+        // System.out.println();
+        // System.out.println(linkedList1);
     }
-
 }
 
 class Person{

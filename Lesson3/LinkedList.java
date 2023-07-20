@@ -24,7 +24,6 @@ public class LinkedList<T> {
          * Значение элемента (узла)
          */
         public T value;
-
     }
 
     /**
@@ -142,7 +141,7 @@ public class LinkedList<T> {
         return size;
     }
 
-
+    
     @Override
     public String toString() {
 
@@ -154,7 +153,6 @@ public class LinkedList<T> {
             stringBuilder.append('\n');
             node = node.next;
         }
-
         return stringBuilder.toString();
     }
 }
