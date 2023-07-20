@@ -43,18 +43,13 @@ public class Program {
 
         int count = linkedList1.count();
         System.out.printf("Количество элементов в списке - %d\n", count);
-        Employee temp = null;
-
-        LinkedList<Employee> linkedList2 = new LinkedList<>();
-        for (int i = 0; i < count; i++) {
-            // temp = linkedList1.;
-        }
         
+        linkedList1.revers();
 
         // linkedList1.removeFirst();
         // linkedList1.removeLast();
-        // System.out.println();
-        // System.out.println(linkedList1);
+        System.out.println();
+        System.out.println(linkedList1);
     }
 }
 
