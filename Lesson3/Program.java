@@ -41,10 +41,14 @@ public class Program {
         //     System.out.println("Элемент не найден.");
         // }
 
-        System.out.printf("Количество элементов в списке - %d\n", linkedList1.count());
+        int count = linkedList1.count();
+        System.out.printf("Количество элементов в списке - %d\n", count);
+        Employee temp = null;
 
         LinkedList<Employee> linkedList2 = new LinkedList<>();
-
+        for (int i = 0; i < count; i++) {
+            // temp = linkedList1.;
+        }
         
 
         // linkedList1.removeFirst();
