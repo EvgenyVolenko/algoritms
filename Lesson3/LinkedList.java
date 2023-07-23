@@ -191,19 +191,6 @@ public class LinkedList<T> {
         return previusNode;
     }
 
-    // public String printList(Node head) {
-
-    //     StringBuilder stringBuilder = new StringBuilder();
-    //     Node node = head;
-
-    //     while (node != null) {
-    //         stringBuilder.append(node.value);
-    //         stringBuilder.append('\n');
-    //         node = node.next;
-    //     }
-    //     return stringBuilder.toString();
-    // }
-
     @Override
     public String toString() {
 
