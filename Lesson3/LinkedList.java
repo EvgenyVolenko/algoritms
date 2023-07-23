@@ -10,6 +10,10 @@ public class LinkedList<T> {
      */
     private Node head;
 
+    public Node getHead() {
+        return head;
+    }
+
     /**
      * Узел связного списка
      */
@@ -148,7 +152,7 @@ public class LinkedList<T> {
      * Разворот связного списка
      */
     public void revers() {
-        
+
         Node preNode = null;
         Node carNode = head;
         Node nextNode = carNode.next;
@@ -159,18 +163,53 @@ public class LinkedList<T> {
             carNode.next = preNode;
             preNode = carNode;
             carNode = nextNode;
-            nextNode = carNode.next;          
+            nextNode = carNode.next;
         }
         carNode.next = preNode;
         head = carNode;
     }
 
+    /**
+     * Разворот связного списка (рекурсия)
+     */
+    public void reversRec(){
+        
+        if(head == null || head.next == null) return;
+        head = reversRec(head, head.next);
+    }
+
+    public Node reversRec(Node currentNode, Node restNode) {
+
+        if (restNode == null){
+            return currentNode;
+        }
+        
+        Node previusNode = reversRec(currentNode.next, restNode.next);
+        restNode.next = currentNode;
+        currentNode.next = null;
+
+        return previusNode;
+    }
+
+    // public String printList(Node head) {
+
+    //     StringBuilder stringBuilder = new StringBuilder();
+    //     Node node = head;
+
+    //     while (node != null) {
+    //         stringBuilder.append(node.value);
+    //         stringBuilder.append('\n');
+    //         node = node.next;
+    //     }
+    //     return stringBuilder.toString();
+    // }
+
     @Override
     public String toString() {
 
         StringBuilder stringBuilder = new StringBuilder();
-
         Node node = head;
+        
         while (node != null) {
             stringBuilder.append(node.value);
             stringBuilder.append('\n');
@@ -178,4 +217,5 @@ public class LinkedList<T> {
         }
         return stringBuilder.toString();
     }
+
 }

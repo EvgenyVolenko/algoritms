@@ -24,8 +24,8 @@ public class Program {
 
         linkedList1.sort(new EmployeeComparator(SortType.Ascending));
 
-        System.out.println();
-        System.out.println(linkedList1);
+        // System.out.println();
+        // System.out.println(linkedList1);
 
         // linkedList1.sort(new EmployeeComparator(SortType.Descending));
 
@@ -49,6 +49,10 @@ public class Program {
         // linkedList1.removeFirst();
         // linkedList1.removeLast();
         System.out.println();
+        System.out.println(linkedList1);
+
+        linkedList1.reversRec();
+
         System.out.println(linkedList1);
     }
 }
