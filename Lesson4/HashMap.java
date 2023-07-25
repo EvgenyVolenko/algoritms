@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+
+import javax.swing.text.html.parser.Entity;
 
 public class HashMap<K, V> {
 
@@ -12,7 +15,7 @@ public class HashMap<K, V> {
         V value;
     }
 
-    class Bucket<K, V> {
+    class Bucket<K, V> implements Iterator<Entity>{
 
         Node head;
 
@@ -97,6 +100,18 @@ public class HashMap<K, V> {
             }
             return keys;
         }
+
+        @Override
+        public boolean hasNext() {
+            // TODO Auto-generated method stub
+            return false;
+        }
+
+        @Override
+        public Entity next() {
+            // TODO Auto-generated method stub
+            return null;
+        }
     }
 
     private int calculateBucketIndex(K key) {
@@ -158,13 +173,12 @@ public class HashMap<K, V> {
             if (bucket == null) {
                 System.out.printf("bucket № %d пустой\n", count);
             } else {
-                System.out.printf("bucket № %d содержит %s элементов!\n", count, bucket.size());
                 String[] keys = bucket.getKeys();
-                // System.out.println(Arrays.toString(keys));
-
-                for (int index = 0; index < bucket.size(); index++) {
-                    System.out.printf("Телефон № %s - Контакт %s\n", (String) keys[index], (String) bucket.get(keys[index]));
-                }
+                System.out.printf("bucket № %d содержит %s элементов!\n", count, keys.length);
+                
+                for (int index = 0; index < keys.length; index++) {
+                    System.out.printf("Телефон № %s - Контакт %s\n", keys[index], bucket.get(keys[index]));
+               }
             }
             count++;
         }

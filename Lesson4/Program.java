@@ -12,8 +12,8 @@ public class Program {
 
         String searchValue = hashMap.get("+79001112233");
 
-        hashMap.remove("+79001112233");
         // hashMap.remove("+79001112233");
+        hashMap.remove("+79001112233");
 
         // searchValue = hashMap.get("+79001112233");
 
