@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class HashMap<K, V> {
 
     private static final int INIT_BUCKET_COUNT = 16;
@@ -16,7 +19,6 @@ public class HashMap<K, V> {
         class Node {
             Node next;
             Entity value;
-
         }
 
         public V add(Entity entity) {
@@ -73,6 +75,27 @@ public class HashMap<K, V> {
                 }
                 return null;
             }
+        }
+
+        public int size() {
+            int count = 0;
+            Node node = head;
+            while (node != null) {
+                count++;
+                node = node.next;
+            }
+            return count;
+        }
+
+        public String[] getKeys() {
+            String[] keys = new String[size()];
+            Node node = head;
+
+            for (int i = 0; i < size(); i++) {
+                keys[i] = (String) node.value.key;
+                node = node.next;
+            }
+            return keys;
         }
     }
 
@@ -133,9 +156,15 @@ public class HashMap<K, V> {
         int count = 1;
         for (Bucket bucket : buckets) {
             if (bucket == null) {
-                System.out.printf("bucket № %d содержит %s !\n", count, bucket);
+                System.out.printf("bucket № %d пустой\n", count);
             } else {
-                System.out.printf("bucket № %d содержит %s !\n", count, bucket);
+                System.out.printf("bucket № %d содержит %s элементов!\n", count, bucket.size());
+                String[] keys = bucket.getKeys();
+                // System.out.println(Arrays.toString(keys));
+
+                for (int index = 0; index < bucket.size(); index++) {
+                    System.out.printf("Телефон № %s - Контакт %s\n", (String) keys[index], (String) bucket.get(keys[index]));
+                }
             }
             count++;
         }

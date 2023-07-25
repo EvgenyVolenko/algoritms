@@ -4,16 +4,18 @@ public class Program {
 
         HashMap<String, String> hashMap = new HashMap<>(4);
 
-        String prevValue = hashMap.put("+79001112233", "Андрей");
-        prevValue = hashMap.put("+79001112231", "Андрей");
-        prevValue = hashMap.put("+79001112231", "Сергей");
+        hashMap.put("+79001112233", "Андрей");
+        hashMap.put("+79001112231", "Андрей");
+        // hashMap.put("+79001112231", "Сергей");
+        hashMap.put("+79001112234", "Сергей");
+        hashMap.put("+79001112235", "Валерий");
 
         String searchValue = hashMap.get("+79001112233");
 
-        prevValue = hashMap.remove("+79001112233");
-        prevValue = hashMap.remove("+79001112233");
+        hashMap.remove("+79001112233");
+        // hashMap.remove("+79001112233");
 
-        searchValue = hashMap.get("+79001112233");
+        // searchValue = hashMap.get("+79001112233");
 
         // Human human1 = new Human();
         // human1.name = "User";
