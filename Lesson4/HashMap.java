@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class HashMap<K, V> {
+public class HashMap<K, V> implements Iterable<K> {
 
     private static final int INIT_BUCKET_COUNT = 16;
 
@@ -10,16 +10,13 @@ public class HashMap<K, V> {
         K key;
         V value;
 
-        public K getKey() {
-            return key;
-        }
-
-        public V getValue() {
-            return value;
+        @Override
+        public String toString() {
+            return String.format("Телефон № %s - Контакт %s", key, value);
         }
     }
 
-    class Bucket<K, V> implements Iterator<Entity> {
+    class Bucket<K, V> {
 
         Node head;
 
@@ -83,7 +80,7 @@ public class HashMap<K, V> {
                 return null;
             }
         }
-        
+
         /**
          * @return Получаем количество элементов списка из Entity
          */
@@ -116,28 +113,15 @@ public class HashMap<K, V> {
          */
         public void printEntitys() {
             Node node = head;
-            Entity entity = null;
+
             if (head == null) {
-                System.out.println("Список Entity существует, но пустой");
+                System.out.println("Список из Entity существует, но пустой");
             } else {
                 while (node != null) {
-                    entity = node.value;
-                    System.out.printf("Телефон № %s - Контакт %s\n", entity.key, entity.value);
+                    System.out.println(node.value.toString());
                     node = node.next;
                 }
             }
-        }
-
-        @Override
-        public boolean hasNext() {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public Entity next() {
-            // TODO Auto-generated method stub
-            return null;
         }
     }
 
@@ -177,6 +161,14 @@ public class HashMap<K, V> {
         return (V) bucket.get(key);
     }
 
+    public K getNext(K key) {
+        int index = calculateBucketIndex(key);
+        Bucket bucket = buckets[index];
+        if (bucket == null)
+            return null;
+        return (K) bucket.get(key);
+    }
+
     public V remove(K key) {
         int index = calculateBucketIndex(key);
         Bucket bucket = buckets[index];
@@ -201,11 +193,52 @@ public class HashMap<K, V> {
 
         for (int index = 0; index < buckets.length; index++) {
             if (buckets[index] == null) {
-                System.out.printf("bucket № %d содержит:\nНе содержит списка Entity\n", index);
+                System.out.printf("bucket № %d содержит:\nНе содержит списка из Entity\n", index);
             } else {
                 System.out.printf("bucket № %d содержит:\n", index);
                 buckets[index].printEntitys();
             }
         }
+    }
+
+    public void printALLForeach(){
+        for (Bucket bucket : buckets) {
+            
+        }
+    }
+
+    @Override
+    public Iterator<K> iterator() {
+        return new Iterator<K>() {
+
+            HashMap.Bucket.Node node = null;
+
+            @Override
+            public boolean hasNext() {
+
+                for (int index = 0; index < buckets.length; index++) {
+                    if (buckets[index] == null)
+                        ;
+                    else {
+                        if (buckets[index].head == null)
+                            ;
+                        else {
+                            node = buckets[index].head;
+                            while (node != null) {
+                                node = node.next;
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public K next() {
+
+                return (K) node.value.key;
+            }
+        };
     }
 }
