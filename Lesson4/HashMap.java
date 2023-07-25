@@ -84,6 +84,9 @@ public class HashMap<K, V> {
             }
         }
         
+        /**
+         * @return Получаем количество элементов списка из Entity
+         */
         public int size() {
             int count = 0;
             Node node = head;
@@ -94,6 +97,9 @@ public class HashMap<K, V> {
             return count;
         }
 
+        /**
+         * @return Получаем строковый массив значений ключей в списке bucket
+         */
         public String[] getKeys() {
             String[] keys = new String[size()];
             Node node = head;
@@ -105,6 +111,9 @@ public class HashMap<K, V> {
             return keys;
         }
 
+        /**
+         * Обходим список из Entity и выводим в терминал
+         */
         public void printEntitys() {
             Node node = head;
             Entity entity = null;
@@ -185,6 +194,9 @@ public class HashMap<K, V> {
         buckets = new Bucket[initCount];
     }
 
+    /**
+     * Выводим в терминал все, что есть в HashMap
+     */
     public void printALL() {
 
         for (int index = 0; index < buckets.length; index++) {
