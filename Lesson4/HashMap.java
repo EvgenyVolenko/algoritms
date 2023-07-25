@@ -212,6 +212,7 @@ public class HashMap<K, V> implements Iterable<K> {
         return new Iterator<K>() {
 
             HashMap.Bucket.Node node = null;
+            K key = null;
 
             @Override
             public boolean hasNext() {
