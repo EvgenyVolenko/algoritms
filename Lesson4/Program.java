@@ -9,6 +9,7 @@ public class Program {
         // hashMap.put("+79001112231", "Сергей");
         hashMap.put("+79001112234", "Сергей");
         hashMap.put("+79001112235", "Валерий");
+        // hashMap.put("+79001112236", "Вася");
 
         String searchValue = hashMap.get("+79001112233");
 

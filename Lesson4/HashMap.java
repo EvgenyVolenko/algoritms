@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
-
-import javax.swing.text.html.parser.Entity;
 
 public class HashMap<K, V> {
 
@@ -13,9 +9,17 @@ public class HashMap<K, V> {
     class Entity {
         K key;
         V value;
+
+        public K getKey() {
+            return key;
+        }
+
+        public V getValue() {
+            return value;
+        }
     }
 
-    class Bucket<K, V> implements Iterator<Entity>{
+    class Bucket<K, V> implements Iterator<Entity> {
 
         Node head;
 
@@ -79,7 +83,7 @@ public class HashMap<K, V> {
                 return null;
             }
         }
-
+        
         public int size() {
             int count = 0;
             Node node = head;
@@ -99,6 +103,20 @@ public class HashMap<K, V> {
                 node = node.next;
             }
             return keys;
+        }
+
+        public void printEntitys() {
+            Node node = head;
+            Entity entity = null;
+            if (head == null) {
+                System.out.println("Список Entity существует, но пустой");
+            } else {
+                while (node != null) {
+                    entity = node.value;
+                    System.out.printf("Телефон № %s - Контакт %s\n", entity.key, entity.value);
+                    node = node.next;
+                }
+            }
         }
 
         @Override
@@ -168,19 +186,14 @@ public class HashMap<K, V> {
     }
 
     public void printALL() {
-        int count = 1;
-        for (Bucket bucket : buckets) {
-            if (bucket == null) {
-                System.out.printf("bucket № %d пустой\n", count);
+
+        for (int index = 0; index < buckets.length; index++) {
+            if (buckets[index] == null) {
+                System.out.printf("bucket № %d содержит:\nНе содержит списка Entity\n", index);
             } else {
-                String[] keys = bucket.getKeys();
-                System.out.printf("bucket № %d содержит %s элементов!\n", count, keys.length);
-                
-                for (int index = 0; index < keys.length; index++) {
-                    System.out.printf("Телефон № %s - Контакт %s\n", keys[index], bucket.get(keys[index]));
-               }
+                System.out.printf("bucket № %d содержит:\n", index);
+                buckets[index].printEntitys();
             }
-            count++;
         }
     }
 }
