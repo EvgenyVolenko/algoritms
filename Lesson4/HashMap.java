@@ -250,7 +250,7 @@ public class HashMap<K, V> implements Iterable<K> {
             @Override
             public K next() {
 
-                if (counter >= buckets[bucketN].size() || buckets[bucketN] == null || buckets[bucketN].head == null) {
+                if (buckets[bucketN] == null || buckets[bucketN].head == null || counter >= buckets[bucketN].size()) {
                     bucketN++;
                     counter = 0;
                 }
