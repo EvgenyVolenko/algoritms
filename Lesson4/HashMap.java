@@ -249,13 +249,18 @@ public class HashMap<K, V> implements Iterable<K> {
 
             @Override
             public K next() {
-                if (buckets[bucketN] == null) {
-                    return (K) getKeyByCoord(bucketN++, counter);
-                } else if (counter < buckets[bucketN].size() - 1) {
+
+                if (counter >= buckets[bucketN].size() || buckets[bucketN] == null || buckets[bucketN].head == null) {
+                    bucketN++;
+                    counter = 0;
+                }
+
+                if (counter < buckets[bucketN].size()) {
                     return (K) getKeyByCoord(bucketN, counter++);
                 } else {
                     return (K) getKeyByCoord(bucketN++, counter);
                 }
+
             }
         };
     }

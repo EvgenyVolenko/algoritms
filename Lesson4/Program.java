@@ -11,10 +11,11 @@ public class Program {
         hashMap.put("+79001112234", "Сергей");
         hashMap.put("+79001112235", "Валерий");
         // hashMap.put("+79001112236", "Вася");
+        // hashMap.put("+79001112237", "Дуся");
 
         String searchValue = hashMap.get("+79001112233");
 
-        // hashMap.remove("+79001112233");
+        hashMap.remove("+79001112233");
         // hashMap.remove("+79001112233");
 
         // searchValue = hashMap.get("+79001112233");
