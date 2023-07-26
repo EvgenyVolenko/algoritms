@@ -1,3 +1,5 @@
+
+
 public class Program {
 
     public static void main(String[] args) {
@@ -27,11 +29,14 @@ public class Program {
         // human2.age = 34;
 
         // System.out.println(human1.equals(human2));
-        // hashMap.printALL();
+        hashMap.printALL();
+        System.out.println();
         hashMap.printALLForeach();
-
+        System.out.println();
+        for (String str : hashMap) {
+            System.out.println(str);
+        }
     }
-
 }
 
 class Human {

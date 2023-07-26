@@ -16,7 +16,7 @@ public class HashMap<K, V> implements Iterable<K> {
         }
     }
 
-    class Bucket<K, V> implements Iterable<K> {
+    class Bucket<K, V> {
 
         Node head;
 
@@ -96,6 +96,9 @@ public class HashMap<K, V> implements Iterable<K> {
 
         public K getKeyByIndex(int cell) {
             Node node = head;
+            if (head == null) {
+                return null;
+            }
             for (int index = 0; index < cell; index++) {
                 node = node.next;
             }
@@ -132,24 +135,6 @@ public class HashMap<K, V> implements Iterable<K> {
             }
         }
 
-        @Override
-        public Iterator<K> iterator() {
-            return new Iterator<K>() {
-                int counter = 0;
-
-                @Override
-                public boolean hasNext() {
-                    if (counter < size())
-                        return true;
-                    return false;
-                }
-
-                @Override
-                public K next() {
-                    return getKeyByIndex(counter++);
-                }
-            };
-        }
     }
 
     private int calculateBucketIndex(K key) {
@@ -186,6 +171,14 @@ public class HashMap<K, V> implements Iterable<K> {
         if (bucket == null)
             return null;
         return (V) bucket.get(key);
+    }
+
+    public K getKeyByCoord(int column, int cell) {
+        Bucket bucket = buckets[column];
+        if (bucket == null) {
+            return null;
+        }
+        return (K) bucket.getKeyByIndex(cell);
     }
 
     public V remove(K key) {
@@ -228,23 +221,8 @@ public class HashMap<K, V> implements Iterable<K> {
                 HashMap.Bucket.Node node = bucket.head;
                 if (node != null) {
                     for (int i = 0; i < bucket.size(); i++) {
-                        System.out.printf("Телефон № %s - Контакт %s\n", bucket.getKeyByIndex(i), bucket.get(bucket.getKeyByIndex(i)));
-                        node = node.next;
-                    }
-                }
-            }
-        }
-    }
-
-    public void printALLForeachIter() {
-        for (Bucket bucket : buckets) {
-            if (bucket == null)
-                ;
-            else {
-                HashMap.Bucket.Node node = bucket.head;
-                if (node != null) {
-                    for (int i = 0; i < bucket.size(); i++) {
-                        System.out.printf("Телефон № %s - Контакт %s\n", bucket.getKeyByIndex(i), bucket.get(bucket.getKeyByIndex(i)));
+                        System.out.printf("Телефон № %s - Контакт %s\n", bucket.getKeyByIndex(i),
+                                bucket.get(bucket.getKeyByIndex(i)));
                         node = node.next;
                     }
                 }
@@ -258,33 +236,24 @@ public class HashMap<K, V> implements Iterable<K> {
 
             HashMap.Bucket.Node node = null;
             K key = null;
+            int bucketN = 0;
+            int counter = 0;
 
             @Override
             public boolean hasNext() {
-
-                for (int index = 0; index < buckets.length; index++) {
-                    if (buckets[index] == null)
-                        ;
-                    else {
-                        if (buckets[index].head == null)
-                            ;
-                        else {
-                            node = buckets[index].head;
-                            while (node != null) {
-                                node = node.next;
-                                return true;
-                            }
-                        }
-                    }
+                if (bucketN < buckets.length) {
+                    return true;
                 }
                 return false;
             }
 
             @Override
             public K next() {
-
-                return (K) node.value.key;
-            }
+                for (int index = 0; index < buckets[bucketN].size(); index++) {
+                    System.out.println(index);
+                }
+                return (K) getKeyByCoord(bucketN++, counter);
+            } 
         };
     }
 }
