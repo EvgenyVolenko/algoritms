@@ -249,11 +249,14 @@ public class HashMap<K, V> implements Iterable<K> {
 
             @Override
             public K next() {
-                for (int index = 0; index < buckets[bucketN].size(); index++) {
-                    System.out.println(index);
+                if (buckets[bucketN] == null) {
+                    return (K) getKeyByCoord(bucketN++, counter);
+                } else if (counter < buckets[bucketN].size() - 1) {
+                    return (K) getKeyByCoord(bucketN, counter++);
+                } else {
+                    return (K) getKeyByCoord(bucketN++, counter);
                 }
-                return (K) getKeyByCoord(bucketN++, counter);
-            } 
+            }
         };
     }
 }

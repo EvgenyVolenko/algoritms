@@ -1,5 +1,4 @@
 
-
 public class Program {
 
     public static void main(String[] args) {
@@ -34,7 +33,9 @@ public class Program {
         hashMap.printALLForeach();
         System.out.println();
         for (String str : hashMap) {
-            System.out.println(str);
+            if (str != null) {
+                System.out.printf("Телефон № %s - Контакт %s\n", str, hashMap.get(str));
+            }
         }
     }
 }
