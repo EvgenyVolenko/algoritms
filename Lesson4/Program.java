@@ -14,7 +14,7 @@ public class Program {
         String searchValue = hashMap.get("+79001112233");
 
         // hashMap.remove("+79001112233");
-        hashMap.remove("+79001112233");
+        // hashMap.remove("+79001112233");
 
         // searchValue = hashMap.get("+79001112233");
 
@@ -27,7 +27,8 @@ public class Program {
         // human2.age = 34;
 
         // System.out.println(human1.equals(human2));
-        hashMap.printALL();
+        // hashMap.printALL();
+        hashMap.printALLForeach();
 
     }
 

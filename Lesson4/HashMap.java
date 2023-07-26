@@ -16,7 +16,7 @@ public class HashMap<K, V> implements Iterable<K> {
         }
     }
 
-    class Bucket<K, V> {
+    class Bucket<K, V> implements Iterable<K> {
 
         Node head;
 
@@ -94,6 +94,14 @@ public class HashMap<K, V> implements Iterable<K> {
             return count;
         }
 
+        public K getKeyByIndex(int cell) {
+            Node node = head;
+            for (int index = 0; index < cell; index++) {
+                node = node.next;
+            }
+            return (K) node.value.key;
+        }
+
         /**
          * @return Получаем строковый массив значений ключей в списке bucket
          */
@@ -122,6 +130,25 @@ public class HashMap<K, V> implements Iterable<K> {
                     node = node.next;
                 }
             }
+        }
+
+        @Override
+        public Iterator<K> iterator() {
+            return new Iterator<K>() {
+                int counter = 0;
+
+                @Override
+                public boolean hasNext() {
+                    if (counter < size())
+                        return true;
+                    return false;
+                }
+
+                @Override
+                public K next() {
+                    return getKeyByIndex(counter++);
+                }
+            };
         }
     }
 
@@ -161,14 +188,6 @@ public class HashMap<K, V> implements Iterable<K> {
         return (V) bucket.get(key);
     }
 
-    public K getNext(K key) {
-        int index = calculateBucketIndex(key);
-        Bucket bucket = buckets[index];
-        if (bucket == null)
-            return null;
-        return (K) bucket.get(key);
-    }
-
     public V remove(K key) {
         int index = calculateBucketIndex(key);
         Bucket bucket = buckets[index];
@@ -201,9 +220,35 @@ public class HashMap<K, V> implements Iterable<K> {
         }
     }
 
-    public void printALLForeach(){
+    public void printALLForeach() {
         for (Bucket bucket : buckets) {
-            
+            if (bucket == null)
+                ;
+            else {
+                HashMap.Bucket.Node node = bucket.head;
+                if (node != null) {
+                    for (int i = 0; i < bucket.size(); i++) {
+                        System.out.printf("Телефон № %s - Контакт %s\n", bucket.getKeyByIndex(i), bucket.get(bucket.getKeyByIndex(i)));
+                        node = node.next;
+                    }
+                }
+            }
+        }
+    }
+
+    public void printALLForeachIter() {
+        for (Bucket bucket : buckets) {
+            if (bucket == null)
+                ;
+            else {
+                HashMap.Bucket.Node node = bucket.head;
+                if (node != null) {
+                    for (int i = 0; i < bucket.size(); i++) {
+                        System.out.printf("Телефон № %s - Контакт %s\n", bucket.getKeyByIndex(i), bucket.get(bucket.getKeyByIndex(i)));
+                        node = node.next;
+                    }
+                }
+            }
         }
     }
 
